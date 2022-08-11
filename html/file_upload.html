@@ -1,0 +1,31 @@
+<!--单文件上传-->
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>单文件上传</title>
+</head>
+<body>
+
+<!-- HTML5 Input Form Elements -->
+<input id="fileupload" type="file" name="fileupload" />
+<button id="upload-button" onclick="uploadFile()"> Upload </button>
+
+<!-- Ajax JavaScript File Upload to Spring Boot Logic -->
+<script>
+    async function uploadFile() {
+        let formData = new FormData();
+        formData.append("file", fileupload.files[0]);
+        let response = await fetch('http://localhost:18686/file/upload', {
+            method: "POST",
+            body: formData
+        });
+
+        if (response.status == 200) {
+            alert("File successfully uploaded.");
+        }
+    }
+</script>
+
+</body>
+</html>

@@ -2,16 +2,14 @@ package com.dsz.spring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Auther: ShouZhi@Duan
  * @Date: 2022/5/24 9:46
  * @Description:
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/test")
 public class TestController {
