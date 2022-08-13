@@ -15,7 +15,7 @@ import java.io.IOException;
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 public class SpringWorkApplication {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         ConfigurableApplicationContext run = SpringApplication.run(SpringWorkApplication.class, args);
         MyConfig config = run.getBean(MyConfig.class);
         System.out.println(config.getName());

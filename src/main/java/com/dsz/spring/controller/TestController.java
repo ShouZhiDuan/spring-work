@@ -1,8 +1,17 @@
 package com.dsz.spring.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.dsz.spring.bean_definition.Person;
+import org.springframework.beans.MutablePropertyValues;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.support.RootBeanDefinition;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * @Auther: ShouZhi@Duan
@@ -18,13 +27,22 @@ public class TestController {
 //    private JdbcTemplate jdbcTemplate;
 
     @Autowired
+    private GenericApplicationContext ctx;
+
+    @Autowired
     private StringRedisTemplate redisTemplate;
 
-//    @GetMapping("/insert")
-//    public Object test(){
-//        List<Map<String, Object>> maps = jdbcTemplate.queryForList("select  * from  user");
-//        return maps;
-//    }
+    @GetMapping("/bean")
+    public Object test(){
+        MutablePropertyValues pvs = new MutablePropertyValues();
+        pvs.add("name", "shouzhi");
+        pvs.add("age", 33);
+        RootBeanDefinition rootBeanDefinition = new RootBeanDefinition(Person.class, null, pvs);
+        ctx.registerBeanDefinition("person",rootBeanDefinition);
+        ctx.refresh();
+        Person person = ctx.getBean(Person.class);
+        return JSON.toJSONString(person);
+    }
 
     @GetMapping("/1")
     public Object test1(@RequestParam(name = "name", defaultValue = "") Long id){
