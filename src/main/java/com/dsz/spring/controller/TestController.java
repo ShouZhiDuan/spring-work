@@ -2,6 +2,7 @@ package com.dsz.spring.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.dsz.spring.bean_definition.Person;
+import com.dsz.spring.dto.TestDTO;
 import org.springframework.beans.MutablePropertyValues;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.support.RootBeanDefinition;
@@ -31,6 +32,15 @@ public class TestController {
 
     @Autowired
     private StringRedisTemplate redisTemplate;
+
+
+    @PostMapping("/test")
+    public TestDTO test1(@RequestBody TestDTO testDTO){
+        return testDTO;
+    }
+
+
+
 
     @GetMapping("/bean")
     public Object test(){
